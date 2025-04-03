@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter.colorchooser import askcolor
 from tkinter import ttk
 import tkinter as tk
-from PIL import Image,ImageTK
+from PIL import Image,ImageTk
 
 root=Tk()
 root.title('Whiteboard')
@@ -34,14 +34,14 @@ def new_canvas():
     display_palette()
 try:
     image_icon=Image.open('logo.jpg')
-    image_icon=ImageTk.photoImage(image_icon)
+    image_icon=ImageTk.PhotoImage(image_icon)
     root.iconphoto(False,image_icon)
 except Exception as e:
     print(f"Error loading logo.jpg:{e}")
 
 try:
     image_color=Image.open('color.jpg')
-    image_color=ImageTk.photoImage(image_color)
+    image_color=ImageTk.PhotoImage(image_color)
     label_color=Label(root,image=image_color,bg='#f2f3f5')
     label_color.place(x=10,y=20)
 except Exception as e:
@@ -49,9 +49,9 @@ except Exception as e:
 
 try:
     image_eraser=Image.open('eraser.jpg')
-    image_eraser=ImageTk.photoImage(image_eraser)
+    image_eraser=ImageTk.PhotoImage(image_eraser)
     button=Button(root,image=image_eraser,bg='#f2f3f5',command=new_canvas)
-    button_color.place(x=30,y=400)
+    button.place(x=30,y=400)
 except Exception as e:
     print(f"Error loading eraser.jpg:{e}")
 
@@ -83,7 +83,7 @@ display_palette()
 canvas=Canvas(root,width=930,height=500,background='white',cursor='hand2')
 canvas.place(x=100,y=10)
 canvas.bind('<Button-1>',locate_xy)
-canvas.bind('B1-Motion>',addLine)
+canvas.bind('<B1-Motion>',addLine)
 
 current_value=tk.DoubleVar()
 
